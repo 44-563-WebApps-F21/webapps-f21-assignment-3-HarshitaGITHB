@@ -41,9 +41,9 @@
             </style>
         <table>
             <tr>
-                <th>food/drink</th>
-                <th>location</th>
-                <th>amount</th>
+                <th>Food/drink</th>
+                <th>Location</th>
+                <th>Amount</th>
             </tr>
             <tr>
                 <td>Karivepaku chicken</td>
@@ -66,5 +66,22 @@
                 <td>$1.37</td>
             </tr>
         </table>
+        <hr>
+        <h3>Code Display</h3>
+        <blockqoute cite= https://cp-algorithms.com/data_structures/stack_queue_modification.html>Here we consider another way of modifying a queue to find the minimum in O(1). This way is somewhat more complicated to implement, but this time we actually store all elements. And we also can remove an element from the front without knowing its value.The idea is to reduce the problem to the problem of stacks, which was already solved by us. So we only need to learn how to simulate a queue using two stacks.We make two stacks, s1 and s2. Of course these stack will be of the modified form, so that we can find the minimum in O(1). We will add new elements to the stack s1, and remove elements from the stack s2. If at any time the stack s2 is empty, we move all elements from s1 to s2 (which essentially reverses the order of those elements). Finally finding the minimum in a queue involves just finding the minimum of both stacks.Thus we perform all operations in O(1) on average (each element will be once added to stack s1, once transferred to s2, and once popped from s2). For more Info<a href= https://www.geeksforgeeks.org/design-a-stack-that-supports-getmin-in-o1-time-and-o1-extra-space/> Click Here</a>
+        <pre>
+            if (s2.empty()) {
+                while (!s1.empty()) {
+                    int element = s1.top().first;
+                    s1.pop();
+                    int minimum = s2.empty() ? element : min(element, s2.top().second);
+                    s2.push({element, minimum});
+                }
+            }
+            int remove_element = s2.top().first;
+            s2.pop();
+        </pre>
+        </blockqoute>
+
     </body>
 </html>
